@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Primeiro Portfólio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0e0e10;
+    --surface: #18181b;
+    --border: rgba(255,255,255,0.08);
+    --accent: #00bfff;
+    --text: #f0f0f0;
+    --muted: #888;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--accent); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 2.5rem 4rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    color: var(--accent);
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  .badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .hero-desc {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0e0e10;
+    border: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-1px); }
+
+  /* SKILLS */
+  .section {
+    padding: 4rem 2.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    letter-spacing: -1px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: rgba(200, 241, 53, 0.3);
+    transform: translateY(-3px);
+  }
+
+  .skill-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .skill-level {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .skill-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    border-color: rgba(200, 241, 53, 0.25);
+    transform: translateY(-4px);
+  }
+
+  .project-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .project-link {
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .contact-box h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    letter-spacing: -1px;
+  }
+
+  .contact-box p {
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 960px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Victor<span>Henrique</span></div>
+  <ul>
+    <li><a href="#sobre">sobre</a></li>
+    <li><a href="#projetos">projetos</a></li>
+    <li><a href="#contato">contato</a></li>
+  </ul>
+</nav>
+<section class="hero" id="sobre">
+  <div class="badge">Estou disponível para projetos</div>
+  <h1>Olá, sou o <br><em>Victor Henrique</em><br>Bem-Vindo ao meu site :)</h1>
+  <p class="hero-desc">Estou aprendendo a criar interfaces modernas e experiências digitais que as pessoas adoram usar. Apaixonado por código limpo e bom design.</p>
+  <div class="hero-actions">
+    <button class="btn-primary">Ver projetos</button>
+<a href="https://www.linkedin.com/in/victorhenriquers" target="_blank" class="btn-ghost">Ver LinkedIn</a>
+<a href="curriculo.pdf" download class="btn-ghost">Baixar currículo</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="habilidades">
+  <p class="section-label">habilidades</p>
+  <h2 class="section-title">O que eu sei fazer</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">HTML</div>
+      <div class="skill-level">Semântico & acessível</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">CSS</div>
+      <div class="skill-level">Flexbox & Grid</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-name">JavaScript</div>
+      <div class="skill-level">ES6+</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⚛️</div>
+      <div class="skill-name">React</div>
+      <div class="skill-level">Em aprendizado</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:40%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">Git</div>
+      <div class="skill-level">Versionamento</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>  
+      <div class="skill-card">
+      <div class="skill-icon">🪪</div>
+      <div class="skill-name">Cybersecurity</div>
+      <div class="skill-level">Segurança de Dados</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+       </div>     
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="projetos">
+  <p class="section-label">projetos</p>
+  <h2 class="section-title">O que já construí</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <span class="project-tag">HTML + CSS</span>
+      <div class="project-title">Landing Page</div>
+      <p class="project-desc">Página de apresentação responsiva com animações em CSS e design moderno.</p>
+      <div class="project-footer">
+        <span>HTML · CSS</span>
+        <a class="project-link" href="#">ver projeto →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <span class="project-tag">JavaScript</span>
+      <div class="project-title">Lista de Tarefas</div>
+      <p class="project-desc">App de to-do list com armazenamento local, filtros e drag-and-drop.</p>
+      <div class="project-footer">
+        <span>JS · localStorage</span>
+        <a class="project-link" href="#">ver projeto →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <span class="project-tag">API</span>
+      <div class="project-title">Clima em tempo real</div>
+      <p class="project-desc">Consulta a API OpenWeather e exibe clima atual para qualquer cidade.</p>
+      <div class="project-footer">
+        <span>JS · REST API</span>
+        <a class="project-link" href="#">ver projeto →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <span class="project-tag">HTML + CSS</span>
+      <div class="project-title">Meu Projeto</div>
+      <p class="project-desc">Descrição do que você fez aqui.</p>
+      <div class="project-footer">
+        <span>HTML · CSS</span>
+    <a class="project-link" href="#">ver projeto →</a>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<<section class="section" id="contato">
+  <div class="contact-box">
+    <h2>Vamos trabalhar<br>juntos?</h2>
+    <p>Aberto a freelas, estágios e vagas de dev web.</p>
+    <button class="btn-primary"><victorsilvaresende class="vh"></victorsilvaresende>victorsilvaresende.vh@gmail.com</button>
+  </div>
+</section>
+
+<footer>
+  feito com HTML, CSS & muito carinho :) · 2026
+</footer>
+<script>
+  // Botão "Ver projetos" — rola até a seção de projetos
+  document.querySelector('.btn-primary').addEventListener('click', function() {
+    document.querySelector('.projects-grid').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Botão "victorsilvaresende.vh@gmail.com" — abre o app de e-mail
+  document.querySelector('.contact-box .btn-primary').addEventListener('click', function() {
+    window.location.href = 'mailto:victorsilvaresende.vh@gmail.com';
+  });
+</script>
+</body>
+</html>
